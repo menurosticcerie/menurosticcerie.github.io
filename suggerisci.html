@@ -1,0 +1,57 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Suggerisci una rosticceria</title>
+<meta property="og:title" content="Suggerisci una rosticceria"><meta property="og:description" content="Menu rosticcerie di Putignano e dintorni: segnalaci una rosticceria che manca.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+*{box-sizing:border-box}html,body{margin:0}
+body{background:#f4efe6;color:#1e1a16;font:18px "Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif}
+.w{max-width:480px;margin:0 auto;padding:22px 16px 40px}
+.hd{display:flex;align-items:center;gap:14px}
+.hd img{width:64px;height:64px;border-radius:16px;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.1);object-fit:contain}
+.kk{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#b8700a;font-weight:700}
+h1{font-family:"Bricolage Grotesque","Segoe UI",sans-serif;font-weight:800;font-size:30px;line-height:1.05;margin:2px 0 0;letter-spacing:-.01em}
+p.in{margin:18px 0 20px;line-height:1.4;color:#4d443a}
+.card{background:#fff;border-radius:20px;padding:20px 18px;box-shadow:0 3px 12px rgba(60,40,10,.10)}
+label{display:block;font-weight:700;margin:0 0 6px}label span{font-weight:400;color:#8a7f73}
+input{width:100%;font:inherit;padding:13px 14px;border:2px solid #e3d9c9;border-radius:14px;background:#fffdf9;margin-bottom:16px;outline:none}
+input:focus{border-color:#e8921e}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+button{width:100%;font:700 20px "Atkinson Hyperlegible","Segoe UI",sans-serif;padding:15px;border:0;border-radius:16px;background:#1d7f46;color:#fff;cursor:pointer}
+button:disabled{opacity:.6}
+.err{color:#b4501a;font-weight:700;min-height:1.2em;margin:-4px 0 12px}
+.ok{display:none;text-align:center;padding:30px 10px}
+.ok .v{width:76px;height:76px;border-radius:50%;background:#1d7f46;color:#fff;font-size:44px;display:grid;place-items:center;margin:0 auto 14px}
+.ok h2{font-family:"Bricolage Grotesque","Segoe UI",sans-serif;font-size:28px;margin:0 0 8px}
+a.app{display:block;text-align:center;margin-top:22px;color:#b8700a;font-weight:700;text-decoration:none}
+</style></head><body><div class="w">
+<div class="hd"><img src="logo.jpg" alt=""><div><div class="kk">Menu rosticcerie</div><h1>Suggerisci una rosticceria</h1></div></div>
+<p class="in">Conosci una rosticceria di Putignano o dintorni che pubblica il menu del giorno e che nell'app non c'è? Segnalacela: la valuteremo.</p>
+<div class="card"><form id="f" novalidate>
+<label for="nome">Nome della rosticceria</label><input id="nome" maxlength="80" autocomplete="off" required>
+<label for="comune">Comune</label><input id="comune" maxlength="60" autocomplete="off" required>
+<label for="link">Link <span>(facoltativo: pagina Facebook, Instagram o sito)</span></label><input id="link" maxlength="300" inputmode="url" autocomplete="off">
+<div class="hp" aria-hidden="true"><input id="sito" tabindex="-1" autocomplete="off"></div>
+<div class="err" id="err"></div><button id="b">Invia</button></form>
+<div class="ok" id="ok"><div class="v">&#10003;</div><h2>Grazie!</h2><div>Il suggerimento è arrivato: lo valuteremo.</div></div></div>
+<a class="app" href="https://tinyurl.com/menurosticcerie">Apri l'app Menu &rarr;</a>
+</div><script>
+var LOG = "https://script.google.com/macros/s/AKfycbx8m-b5xkenUmdR8cbIFTVbCJGMIAQOgDWjY3xTY-FFgCowQd5hdB1qeDsEANf6w7wa/exec";
+var f = document.getElementById('f'), err = document.getElementById('err'), b = document.getElementById('b');
+function v(id) { return document.getElementById(id).value.trim(); }
+function fatto() { f.style.display = 'none'; document.getElementById('ok').style.display = 'block'; }
+f.addEventListener('submit', function (e) {
+  e.preventDefault(); err.textContent = '';
+  if (!v('nome') || !v('comune')) { err.textContent = 'Scrivi il nome della rosticceria e il Comune.'; return; }
+  if (!navigator.onLine) { err.textContent = 'Sembra che manchi la connessione: riprova.'; return; }
+  b.disabled = true; b.textContent = 'Invio...';
+  var q = new URLSearchParams({azione: 'suggerimento', nome: v('nome'), comune: v('comune'), link: v('link'),
+                               hp: v('sito'), dispositivo: navigator.userAgent.slice(0, 100)});
+  fetch(LOG + '?' + q.toString(), {redirect: 'follow'}).then(function (r) { return r.text(); }).then(function (t) {
+    t = (t || '').trim();
+    if (t === 'ok') return fatto();
+    b.disabled = false; b.textContent = 'Invia';
+    err.textContent = t === 'troppi' ? 'Oggi sono arrivati già molti suggerimenti: riprova domani.'
+                                     : 'Invio non riuscito: riprova tra poco.';
+  }).catch(function () { fatto(); });  // risposta non leggibile dal browser: la richiesta è comunque partita
+});
+</script></body></html>
