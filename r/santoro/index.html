@@ -1,0 +1,81 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Santoro Gastronomia · menu del giorno</title>
+<meta name="description" content="Il menu del giorno di Santoro Gastronomia (Castellana), sempre aggiornato. Menu rosticcerie: servizio gratuito e senza scopo di lucro.">
+<meta property="og:title" content="Santoro Gastronomia · menu del giorno"><meta property="og:description" content="Il menu di oggi di Santoro Gastronomia, sempre aggiornato">
+<meta property="og:image" content="https://menurosticcerie.github.io/r/santoro/menu.jpg"><meta property="og:url" content="https://menurosticcerie.github.io/r/santoro/">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="../icona-192.png"><link rel="apple-touch-icon" href="../icona-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Santoro Gastro"><meta name="theme-color" content="#e8921e">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+*{box-sizing:border-box}html,body{margin:0}
+body{background:#f4efe6;color:#1e1a16;font:18px "Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif}
+.w{max-width:760px;margin:0 auto;padding:16px 14px 40px}
+.hd{display:flex;align-items:center;gap:14px}
+.hd img{width:64px;height:64px;border-radius:16px;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.1);object-fit:contain;flex:none}
+.kk{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#b8700a;font-weight:700}
+h1{font-family:"Bricolage Grotesque","Segoe UI",sans-serif;font-weight:800;font-size:28px;line-height:1.05;margin:2px 0 0;letter-spacing:-.01em}
+.tw{color:#6b5f52;font-size:16px}
+.bt{display:flex;gap:10px;margin:16px 0 12px}
+.bt button{flex:1;font:700 18px "Atkinson Hyperlegible","Segoe UI",sans-serif;padding:14px 8px;border:0;border-radius:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;min-height:54px}
+#inst{background:#c8283f}#cond{background:#1d7f46}
+.bt svg{width:22px;height:22px;flex:none}
+.aiuto{display:none;background:#fff;border:3px solid #c8283f;border-radius:18px;padding:14px 16px;margin:0 0 14px;line-height:1.35}
+.aiuto.on{display:block}.aiuto b{color:#c8283f}.aiuto ol{margin:8px 0 0;padding-left:22px}.aiuto li{margin:4px 0}
+.aiuto .x{float:right;border:0;background:none;font-size:26px;line-height:1;color:#6b5f52;cursor:pointer;padding:0 0 0 10px}
+.ok{display:none;background:#1d7f46;color:#fff;border-radius:14px;padding:10px 14px;margin:0 0 12px;font-weight:700}
+.ok.on{display:block}
+.menu{display:block;width:100%;height:auto;border-radius:14px;background:#fff;box-shadow:0 3px 12px rgba(60,40,10,.12)}
+.ft{text-align:center;margin-top:18px}.ft a{color:#b8700a;font-weight:700;text-decoration:none;display:inline-block;margin:6px 10px}
+.st .bt #inst{display:none}
+.freccia{position:fixed;left:50%;bottom:6px;transform:translateX(-50%);font-size:44px;color:#c8283f;display:none;animation:su 1s infinite}
+.freccia.on{display:block}@keyframes su{50%{transform:translate(-50%,-10px)}}
+</style></head><body><div class="w">
+<div class="hd"><img src="logo.jpg?v=202611140809" alt=""><div><div class="kk">Menu rosticcerie</div><h1>Santoro Gastronomia</h1><div class="tw">Castellana</div></div></div>
+<div class="bt"><button id="inst" type="button"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.5 1.1 4.3 2.4.8-1.3 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg><span id="instL">Metti sul telefono</span></button>
+<button id="cond" type="button"><svg viewBox="0 0 24 24"><path fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Condividi</button></div>
+<div class="ok" id="ok"></div>
+<div class="aiuto" id="aiuto"><button class="x" type="button" aria-label="Chiudi">&times;</button><div id="aiutoT"></div></div>
+<img class="menu" id="menu" src="menu.jpg?v=202611140809" alt="Menu di oggi di Santoro Gastronomia" width="1240" height="1754">
+<div class="ft"><a href="../../menu.pdf">Tutti i menu di oggi</a><a href="https://tinyurl.com/menurosticcerie">App Menu</a></div>
+</div><div class="freccia" id="freccia">&#8595;</div>
+<script>
+var NAME = "Santoro Gastronomia", LINK = "https://tinyurl.com/santoromenu";
+var ua = navigator.userAgent, ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+var android = /Android/.test(ua), mobile = ios || android, social = /FBAN|FBAV|FB_IAB|FBIOS|Instagram|Messenger/.test(ua);
+var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+var firefox = /Firefox|FxiOS/.test(ua), edge = /Edg\//.test(ua), safari = ios && !/CriOS|FxiOS|EdgiOS/.test(ua);
+var D = document, $ = function (id) { return D.getElementById(id); }, prompt = null;
+if (standalone) D.body.className = 'st';
+$('instL').textContent = mobile ? 'Metti sul telefono' : 'Metti sul desktop';
+/* menu sempre fresco: l'immagine si ricarica con un numero che cambia ogni minuto */
+$('menu').src = 'menu.jpg?t=' + Math.floor(Date.now() / 60000);
+try { if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js'); } catch (e) {}
+window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); prompt = e; });
+window.addEventListener('appinstalled', function () { mostraOk(mobile ? 'Fatto! Trovi ' + NAME + ' sulla schermata Home.' : 'Fatto! Trovi ' + NAME + ' sul desktop e nel menu Start.'); });
+function mostraOk(t) { var o = $('ok'); o.textContent = t; o.className = 'ok on'; chiudiAiuto(); }
+function aiuto(html, freccia) { $('aiutoT').innerHTML = html; $('aiuto').className = 'aiuto on'; $('freccia').className = 'freccia' + (freccia ? ' on' : ''); $('aiuto').scrollIntoView({behavior: 'smooth', block: 'nearest'}); }
+function chiudiAiuto() { $('aiuto').className = 'aiuto'; $('freccia').className = 'freccia'; }
+D.querySelector('.aiuto .x').onclick = chiudiAiuto;
+$('inst').onclick = function () {
+  if (prompt) { prompt.prompt(); prompt.userChoice.then(function (r) { prompt = null; if (r.outcome === 'accepted') mostraOk('Fatto! ' + NAME + (mobile ? ' è sulla schermata Home.' : ' è sul desktop.')); }); return; }
+  if (android && social) {  /* dentro Facebook: si riapre la pagina in Chrome, che sa installarla */
+    location.href = 'intent://' + location.host + location.pathname + '#Intent;scheme=https;package=com.android.chrome;end'; return; }
+  if (ios && social) return aiuto('<b>Prima apri la pagina in Safari:</b><ol><li>tocca i <b>tre puntini</b> &middot;&middot;&middot; in alto a destra</li><li>tocca <b>Apri nel browser</b> (o Apri in Safari)</li><li>poi tocca di nuovo il cuore rosso &#9829;</li></ol>');
+  if (ios) return aiuto('<b>Due tocchi e ' + NAME + ' è sul telefono:</b><ol><li>tocca il pulsante <b>Condividi</b> di ' + (safari ? 'Safari (il quadrato con la freccia, in basso)' : 'questo browser') + '</li><li>scorri e tocca <b>Aggiungi alla schermata Home</b>, poi <b>Aggiungi</b></li></ol>', safari);
+  if (android) return aiuto('<b>Per mettere ' + NAME + ' sul telefono:</b><ol><li>tocca il menu <b>&#8942;</b> in alto a destra</li><li>tocca <b>Aggiungi a schermata Home</b> (o <b>Installa app</b>)</li></ol>');
+  if (firefox) return aiuto('<b>Con Firefox:</b> trascina il <b>lucchetto</b> a sinistra dell\'indirizzo, in alto, sul desktop.<br>Con <b>Chrome</b> o <b>Edge</b> invece basta un clic su questo pulsante e l\'icona di Menu rosticcerie compare sul desktop.');
+  return aiuto(edge ? '<b>In Edge:</b> menu <b>&middot;&middot;&middot;</b> in alto a destra &rarr; <b>App</b> &rarr; <b>Installa questo sito come app</b>, poi lascia la spunta su <b>Crea collegamento sul desktop</b>.'
+                    : '<b>In Chrome:</b> menu <b>&#8942;</b> in alto a destra &rarr; <b>Trasmetti, salva e condividi</b> &rarr; <b>Installa pagina come app</b> (o <b>Crea scorciatoia</b>, con la spunta su <b>Apri come finestra</b>).');
+};
+$('cond').onclick = function () {
+  var dati = {title: NAME + ' · menu del giorno', text: 'Il menu di oggi di ' + NAME + ':', url: LINK};
+  if (navigator.share) { navigator.share(dati).catch(function () {}); return; }
+  var fatto = function () { mostraOk('Link copiato: ' + LINK + ' (incollalo dove vuoi)'); };
+  if (navigator.clipboard) navigator.clipboard.writeText(LINK).then(fatto, function () { prompt_copia(); }); else prompt_copia();
+  function prompt_copia() { aiuto('<b>Copia questo link:</b><br><span style="user-select:all">' + LINK + '</span>'); }
+};
+</script></body></html>

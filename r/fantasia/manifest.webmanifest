@@ -1,0 +1,26 @@
+{
+ "id": "/r/fantasia/",
+ "name": "Fantasia",
+ "short_name": "Fantasia",
+ "description": "Il menu del giorno di Fantasia (Putignano) - Menu rosticcerie",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "lang": "it",
+ "background_color": "#f4efe6",
+ "theme_color": "#e8921e",
+ "icons": [
+  {
+   "src": "../icona-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "../icona-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}
