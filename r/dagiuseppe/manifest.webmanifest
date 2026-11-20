@@ -1,0 +1,26 @@
+{
+ "id": "/r/dagiuseppe/",
+ "name": "Da Giuseppe",
+ "short_name": "Da Giuseppe",
+ "description": "Il menu del giorno di Da Giuseppe (Gioia del Colle) - Menu rosticcerie",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "lang": "it",
+ "background_color": "#f4efe6",
+ "theme_color": "#e8921e",
+ "icons": [
+  {
+   "src": "../icona-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "../icona-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  }
+ ]
+}
